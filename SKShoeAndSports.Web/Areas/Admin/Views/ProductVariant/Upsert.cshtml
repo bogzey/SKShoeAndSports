@@ -1,0 +1,113 @@
+﻿@model SKShoeAndSports.Models.ViewModels.ProductVariantVM
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create New  Variant";
+}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-item" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-item" asp-area="Admin" asp-controller="ProductVariant" asp-action="Index">Index</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <a class="breadcrumb-item" asp-controller="ProductVariant" asp-action="Upsert">Upsert</a>
+            </li>
+        </ol>
+    </nav>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="ProductId" class="form-control" />
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.ProductVariant.Id != 0)
+        {
+            //edit
+            title = $"Edit {Model.Product.Name} Variants";
+            <input type="hidden" asp-for="ProductVariant.Id" />
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Colour
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.ProductVariant.ColourId, Model.ColourList, "-Select a Colour",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="ProductVariant.ColourId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Size
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.ProductVariant.SizeId, Model.SizeList, "-Select a Size",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="ProductVariant.SizeId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    Product
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.ProductVariant.ProductId, Model.ProductList, "-Select a Product",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="ProductVariant.ProductId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ProductVariant.Quantity"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ProductVariant.Quantity" class="form-control" />
+                    <span asp-validation-for="ProductVariant.Quantity" class="text-danger"></span>
+                </div>
+            </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="ProductVariant.Price"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ProductVariant.Price" class="form-control" />
+                        <span asp-validation-for="ProductVariant.Price" class="text-danger"></span>
+                    </div>
+                </div>
+                
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        @if (Model.ProductVariant.Id != 0)
+                        {
+                            <partial name="_EditAndBackToListButton" model="Model.ProductVariant.Id" />
+                        }
+                        else
+                        {
+                            <partial name="_CreateAndBackToListButton" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}

@@ -1,0 +1,28 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:61421",
+      "sslPort": 44383
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "SEND_GRID_KEY": "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",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "SKShoeAndSports.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    }
+  }
+}

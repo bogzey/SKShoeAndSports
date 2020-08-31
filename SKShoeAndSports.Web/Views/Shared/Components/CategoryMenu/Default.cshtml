@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Category>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Categories
+    </a>
+    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+        @foreach (var category in Model)
+        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="CategoryList"
+               asp-route-categoryName="@category.Name">@category.Name</a>
+        }
+    </div>
+</li>

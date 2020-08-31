@@ -1,0 +1,31 @@
+﻿@model Product
+
+<h3>@Model.Brand.Name @Model.Name Variants</h3>
+
+<!--Table Headings-->
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Colour</th>
+            <th>Size</th>
+            <th>Price</th>
+
+            <th>Quantity</th>
+            
+
+        </tr>
+    </thead>
+
+    <!--Table Data-->
+    <tbody>
+        @foreach (ProductVariant s in Model.ProductVariants)
+        {
+            <tr>
+                <td>@s.Colour.Name</td>
+                <td>@s.Size.Name</td>
+                <td>@s.Price</td>
+                <td>@s.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>

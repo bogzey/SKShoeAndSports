@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Subcategory>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="subcategoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Subcategories
+    </a>
+    <div class="dropdown-menu" aria-labelledby="subcategoryDropdown">
+        @foreach (var subcategory in Model)
+        {
+            <a class="dropdown-item" asp-controller="Home" asp-action="SubcategoryList"
+               asp-route-subcategoryName="@subcategory.Name">@subcategory.Name</a>
+        }
+    </div>
+</li>

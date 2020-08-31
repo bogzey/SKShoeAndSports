@@ -1,0 +1,86 @@
+﻿@model Product
+<div class="container">
+    <!--Breadcrumbs to show previously navigated pages before the current page-->
+    <nav aria-label="breadcrumb">
+        <input type="hidden" asp-for="Id" class="form-control" />
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-item" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="breadcrumb-item" asp-controller="Product" asp-action="Index">Products List</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Model.Brand.Name @Model.Name
+                <a class="breadcrumb-item" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"></a>
+            </li>
+        </ol>
+    </nav>
+
+
+
+    <!-- Page Heading -->
+    <h1 class="my-4">
+        Product Details
+    </h1>
+
+    <!-- Product Row -->
+    <div class="row">
+
+        <!--Image Column-->
+        <div class="col-3">
+            <img src="@Model.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+        </div>
+
+        <!--Vehicle Details Column-->
+        <div class="col-md-4">
+            <h3 class="my-3">@Model.Brand.Name @Model.Name</h3>
+            <dl class="row">
+                <dt class="col-sm-5">Category</dt>
+                <dd class="col-sm-7">@Model.Category.Name</dd>
+
+                <dt class="col-sm-5">Subcategory</dt>
+                <dd class="col-sm-7">@Model.Subcategory.Name</dd>
+
+                <dt class="col-sm-5">Product Type</dt>
+                <dd class="col-sm-7">@Model.ProductType.Name</dd>
+
+
+                <dt class="col-sm-5">Price</dt>
+                <dd class="col-sm-7">
+                    @Model.Price.ToString("c")
+                </dd>
+
+
+
+
+                <dt class="col-sm-5">Quantity</dt>
+                <dd class="col-sm-7">@Model.Quantity</dd>
+
+
+            </dl>
+        </div>
+
+        <br />
+        <br />
+
+        <!--Buttons-->
+        <div class="form-group">
+            <div class="col col-lg-12">
+ 
+
+                <a asp-action="Upsert" asp-route-id=@Model.Id class="btn btn-dark">Edit Product</a>
+
+                <a asp-action="Delete" asp-route-id=@Model.Id class="btn btn-danger"> Delete Product</a>
+
+                <a asp-controller="ProductVariant" asp-action="Upsert" class="btn btn-primary">Create New Variant</a>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <!--Variants Table-->
+    <partial name="_ProductVariants" />
+    <!--End of Container-->
+</div>
+

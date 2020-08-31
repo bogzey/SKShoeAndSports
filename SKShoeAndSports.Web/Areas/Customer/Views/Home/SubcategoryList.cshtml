@@ -1,0 +1,60 @@
+﻿@model ProductVM
+
+@{
+    var pageName = ViewBag.CurrentSubcategory;
+    ViewData["Title"] = pageName;
+}
+
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-item" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <a class="breadcrumb-item" asp-controller="Home" asp-action="SubategoryList">@ViewBag.CurrentSubcategory</a>
+        </li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-muted">@ViewBag.CurrentSubcategory - @Model.ProductList.Count() items found:</h2>
+                <hr />
+            </div>
+        </div>
+        <div class="row" style="margin-top:8px;">
+            @if (Model.ProductList.Count() > 0)
+            {
+                foreach (var product in Model.ProductList)
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="card">
+                            <center>
+                                <a href="#"><img class="card-img-top img-fluid" srcset="@product.ImageUrl?width=700&height=400" src="@product.ImageUrl" alt="" /> </a>
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color:magenta">
+                                        @product.Brand.Name @product.Name
+                                    </h4>
+                                    <h5>@product.Price.ToString("c")</h5>
+                                    <p class="card-text">@product.Description</p>
+
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted"><a asp-area="Customer" asp-controller="Home" asp-action="ProductDetails" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a></small>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No Products Available</p>
+            }
+        </div>
+    </div>
+</div>

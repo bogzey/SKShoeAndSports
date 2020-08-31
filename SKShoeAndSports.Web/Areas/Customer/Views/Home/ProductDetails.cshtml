@@ -1,0 +1,131 @@
+﻿@model ProductVM
+    <div class="container">
+        <!--Breadcrumbs to show previously navigated pages before the current page-->
+
+
+        <nav aria-label="breadcrumb">
+            <input type="hidden" asp-for="Product.Id" class="form-control" />
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a class="breadcrumb-item" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">
+                    @Model.Product.Brand.Name @Model.Product.Name
+                    <a class="breadcrumb-item" asp-controller="Product" asp-action="Details" asp-route-id="@Model.Product.Id"></a>
+                </li>
+            </ol>
+        </nav>
+
+
+
+        <!-- Page Heading -->
+        <h1 class="my-4">
+            Product Details
+        </h1>
+
+        <!-- Product Row -->
+        <div class="row">
+
+            <!--Image Column-->
+            <div class="col-3">
+                <img src="@Model.Product.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+
+            <!--Product Details Column-->
+            <div class="col-md-4">
+                <h3 class="my-3">@Model.Product.Brand.Name @Model.Product.Name</h3>
+                <dl class="row">
+                    <dt class="col-sm-5">Category</dt>
+                    <dd class="col-sm-7">@Model.Product.Category.Name</dd>
+
+                    <dt class="col-sm-5">Subcategory</dt>
+                    <dd class="col-sm-7">@Model.Product.Subcategory.Name</dd>
+
+                    <dt class="col-sm-5">Product Type</dt>
+                    <dd class="col-sm-7">@Model.Product.ProductType.Name</dd>
+
+                    <dt class="col-sm-5">Price</dt>
+                    <dd class="col-sm-7">
+                        @Model.Product.Price.ToString("c")
+
+                    </dd>
+
+
+
+
+                </dl>
+            </div>
+
+            <br />
+            <br />
+
+            <!--Buttons-->
+
+        </div>
+
+        <br />
+
+
+        <h3>Available Items</h3>
+
+        <!--Table Headings-->
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Colour</th>
+                    <th>Size</th>
+                    <th>Price</th>
+
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+
+            <!--Table Data-->
+            <tbody>
+                @foreach (ProductVariant s in Model.Product.ProductVariants)
+                {
+                <tr>
+                    @if (s.Colour.Name == null)
+                    {
+                        <td>NA</td>
+                    }
+                    else if (s.Colour.Name != null)
+                    {
+                        <td>@s.Colour.Name</td>
+                    }
+                    @if (s.Size.Name == null)
+                    {
+                        <td>NA</td>
+                    }
+                    else if (s.Colour.Name != null)
+                    {
+                        <td>@s.Size.Name</td>
+                    }
+                    @*<td>@s.Colour.Name</td>
+                    <td>@s.Size.Name</td>*@
+                    <td>@s.Price.ToString("c")</td>
+
+
+
+                    @if (s.Quantity > 0)
+                    {
+                    <!--Action button icon for deleting service-->
+                    <td>
+                        <a asp-action="ProductVariantDetails" asp-route-id=@s.Id style="padding-left:25px">See More</a>
+                    </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Out Of Stock
+                        </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+

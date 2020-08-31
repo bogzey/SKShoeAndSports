@@ -1,0 +1,53 @@
+﻿@model Product
+<!--Breadcrumbs-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-item" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a class="breadcrumb-item" asp-controller="Product" asp-action="Index">Product List</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Delete
+            <a class="breadcrumb-item" asp-controller="Product" asp-action="Delete"></a>
+        </li>
+    </ol>
+</nav>
+
+<!--Main Body Form-->
+<h3 class="mt-4 mb-4">Are you sure you want to to delete the product?</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-5">Category</dt>
+        <dd class="col-sm-7">@Model.Category.Name</dd>
+
+        <dt class="col-sm-5">Subcategory</dt>
+        <dd class="col-sm-7">@Model.Subcategory.Name</dd>
+
+        <dt class="col-sm-5">Product Type</dt>
+        <dd class="col-sm-7">@Model.ProductType.Name</dd>
+
+        <dt class="col-sm-5">Price</dt>
+        <dd class="col-sm-7">@Model.Price</dd>
+
+        
+
+
+
+        <dt class="col-sm-5">Quantity</dt>
+        <dd class="col-sm-7">@Model.Quantity</dd>
+
+    </dl>
+
+    <!--Buttons-->
+
+    <form asp-action="ConfirmDelete" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+    </form>
+</div>
+
+

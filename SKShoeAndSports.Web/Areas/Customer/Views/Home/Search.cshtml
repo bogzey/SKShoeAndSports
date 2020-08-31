@@ -1,0 +1,41 @@
+﻿@model ProductVM
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- /.col-lg-3 -->
+        <div class="col-md-12">
+        <h3>Search Results: </h3>
+            </div>
+        <hr />
+        <hr />
+        <hr />
+        <div class="row" style="margin-top:8px;">
+            @foreach (var product in Model.ProductList)
+            {
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" srcset="@product.ImageUrl?width=700&height=400" src="@product.ImageUrl" alt="" /></a>
+                        <div class="card-body">
+                            <h4 class="card-title" style="color:magenta">
+                                @product.Brand.Name @product.Name
+                            </h4>
+                            <h5>@product.Price.ToString("c")</h5>
+                            <p class="card-text">@product.Description</p>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><a asp-area="Customer" asp-controller="Home" asp-action="ProductDetails" class="btn btn-primary form-control" asp-route-id="@product.Id">Details</a></small>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <!-- /.row -->
+    </div>
+        <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+
+<!-- /.container -->

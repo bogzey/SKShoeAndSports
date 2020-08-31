@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200729043259_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729043259_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729043629_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729043629_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729044047_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729044047_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729044354_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729044354_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729045141_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729045141_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729051204_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729051204_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729170344_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729170344_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200729170721_InitialMigration.cs" />
+    <Compile Remove="Migrations\20200729170721_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20200730160029_AlteredProductVariantModelProductIdNotNullable.cs" />
+    <Compile Remove="Migrations\20200730160029_AlteredProductVariantModelProductIdNotNullable.Designer.cs" />
+    <Compile Remove="Migrations\20200730194928_AlteredBasketModel.cs" />
+    <Compile Remove="Migrations\20200730194928_AlteredBasketModel.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.35" />
+    <PackageReference Include="LazZiya.ImageResize" Version="3.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Stripe.net" Version="37.29.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="Twilio" Version="5.45.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SKShoeAndSports.Models\SKShoeAndSports.Models.csproj" />
+    <ProjectReference Include="..\SKShoeAndSports.Utility\SKShoeAndSports.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
