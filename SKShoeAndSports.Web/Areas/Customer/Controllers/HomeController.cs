@@ -47,7 +47,7 @@ namespace SKShoeAndSports.Web.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             
-            // Check if user is logged in
+            // Check if user is logged in and retrieve basket
             if(claim != null)
             {
                 var count = _unitOfWork.Basket.GetAll(i => i.ApplicationUserId == claim.Value)
@@ -310,26 +310,29 @@ namespace SKShoeAndSports.Web.Controllers
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 basketObj.ApplicationUserId = claim.Value;
 
+                // Retrieve basket associated with user 
                 Basket basketFromDb = _unitOfWork.Basket.GetFirstOrDefault(
                     i => i.ApplicationUserId == basketObj.ApplicationUserId && i.ProductVariantId == basketObj.ProductVariantId
                     , includeProperties: "ProductVariant");
 
-                // Retrieve product variant
+                // Retrieve product variant and populate it with related product attributes
                 var productVariant = _unitOfWork.ProductVariant.GetFirstOrDefault(i => i.Id == basketObj.ProductVariantId
                 , includeProperties: "Product,Product.Brand,Product.Category,Product.Subcategory,Product.ProductType,Size,Colour");
 
                 basketObj.ProductVariant = _unitOfWork.ProductVariant.Get(productVariant.Id);
 
-
+                // Check if basket exists
                 if (basketFromDb == null)
                 {
-                    if (basketObj.Quantity < productVariant.Quantity) { 
+                    // Check if basket quantity is not greater than stock available
+                    if (basketObj.Quantity <= productVariant.Quantity) { 
                     // Record does not exist in database for that product for user
                     _unitOfWork.Basket.Add(basketObj);
                     
                     // Decrease product variant's quanitity when items are added to basket
                     productVariant.Quantity -= basketObj.Quantity;
                     }
+                    // Ensure that a product is not oversold
                     else if (basketObj.Quantity > productVariant.Quantity)
                     {
                         _toastNotification.AddWarningToastMessage($"Max quantity available is: {productVariant.Quantity}");
@@ -338,12 +341,14 @@ namespace SKShoeAndSports.Web.Controllers
                 }
                 else
                 {
-                    if (basketObj.Quantity < productVariant.Quantity) { 
+                    // Check if basket quantity is not greater than stock available
+                    if (basketObj.Quantity <= productVariant.Quantity) { 
                     basketFromDb.Quantity += basketObj.Quantity;
                     productVariant.Quantity -= basketObj.Quantity;
                     _unitOfWork.ProductVariant.Update(productVariant);
                     _unitOfWork.Basket.Update(basketFromDb);
                     }
+                    // Ensure that a product is not oversold
                     else
                     {
                         _toastNotification.AddWarningToastMessage($"Max quantity available is: {productVariant.Quantity}");
@@ -357,7 +362,7 @@ namespace SKShoeAndSports.Web.Controllers
                 var count = _unitOfWork.Basket.GetAll(i => i.ApplicationUserId == basketObj.ApplicationUserId)
                     .ToList().Count();
 
-                
+                // Set count for basket
                 HttpContext.Session.SetInt32(SD.SessionBasket, count);
                 
 
@@ -366,7 +371,7 @@ namespace SKShoeAndSports.Web.Controllers
 
             else
             {
-                var product = _unitOfWork.ProductVariant.GetFirstOrDefault(i => i.Id == basketObj.ProductVariantId, includeProperties: "Brand");
+                var product = _unitOfWork.ProductVariant.GetFirstOrDefault(i => i.Id == basketObj.ProductVariantId, includeProperties: "Product");
                 Basket basket = new Basket()
                 {
                     ProductVariant = product,

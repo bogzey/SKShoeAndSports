@@ -16,7 +16,14 @@ namespace SKShoeAndSports.DataAccess.Seeder
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public DbSeeder()
+        public DbSeeder(ApplicationDbContext db, UserManager<IdentityUser> userManager,
+                                                RoleManager<IdentityRole> roleManager)
+        {
+            _db = db;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
+        public void Initaliser()
         {
             try
             {

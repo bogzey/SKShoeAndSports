@@ -111,10 +111,11 @@
                                         <span class="text-muted">£@(items.Price * items.Quantity)</span>
                                     </li>
                                     }
-                                    <li class="list-group-item d-flex justify-content-between bg-light">
-                                        <small class="text-info">Total (GDP)</small>
-                                        <strong class="text-info">£@(Model.OrderHeader.OrderTotal)</strong>
-                                    </li>
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <small class="text-info">Total (GDP)</small>
+                                    <small class="text-info">INCLUD: VAT</small>
+                                    <strong class="text-info">£@(Model.OrderHeader.OrderTotal.ToString("N2"))</strong>
+                                </li>
                                 </ul>
                             </div>
                         </div>

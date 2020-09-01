@@ -72,12 +72,17 @@
                                     <a class="dropdown-item" asp-area="Admin" asp-controller="ProductVariant" asp-action="Index">Product Variants</a>
                                 </div>
                             </li>
+
+
+                        }
+                        @if (User.IsInRole(SD.Admin_Role))
+                        {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     User / Staff
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
 
                                 </div>
                             </li>

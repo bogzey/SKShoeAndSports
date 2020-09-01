@@ -81,18 +81,6 @@ namespace SKShoeAndSports.Web.Areas.Admin.Controllers
                 
             };
 
-            
-
-            /*foreach (var product in OrderVM.OrderDetails)
-            {
-                OrderVM.ProductVariants = _unitOfWork.ProductVariant.GetAll(i => i.Id == product.ProductVariantId);
-
-                product.ProductVariant.Quantity += product.Quantity;
-            }*/
-            
-
-            
-
 
             if (orderHeader.PaymentStatus == SD.StatusApproved)
             {
