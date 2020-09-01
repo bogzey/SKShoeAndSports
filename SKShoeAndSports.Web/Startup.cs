@@ -22,6 +22,7 @@ using SKShoeAndSports.Services;
 using Imageflow.Server;
 using System.IO;
 using Stripe;
+using SKShoeAndSports.DataAccess.Seeder;
 
 namespace SKShoeAndSports.Web
 {
@@ -48,6 +49,7 @@ namespace SKShoeAndSports.Web
             services.Configure<TwilioOptions>(Configuration.GetSection("Twilio"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductService, ProductsService>();
+            services.AddScoped<IDbSeeder, DbSeeder>();
             services.AddMvc().AddNToastNotifyToastr();
             services.AddControllersWithViews().
                 AddNewtonsoftJson(options =>
@@ -87,7 +89,7 @@ namespace SKShoeAndSports.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbSeeder dbSeeder)
         {
             if (env.IsDevelopment())
             {
@@ -115,6 +117,7 @@ namespace SKShoeAndSports.Web
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
+            dbSeeder.Initaliser();
 
             app.UseEndpoints(endpoints =>
             {
