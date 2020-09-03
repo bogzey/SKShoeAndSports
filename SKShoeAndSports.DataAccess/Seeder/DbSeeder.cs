@@ -39,6 +39,7 @@ namespace SKShoeAndSports.DataAccess.Seeder
 
             if (_db.Roles.Any(i => i.Name == SD.Admin_Role)) return;
 
+            // Create Roles
             _roleManager.CreateAsync(new IdentityRole(SD.Admin_Role)).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole(SD.Customer_Role)).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole(SD.Staff_Role)).GetAwaiter().GetResult();

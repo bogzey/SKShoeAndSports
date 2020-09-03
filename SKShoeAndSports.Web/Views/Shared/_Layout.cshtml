@@ -29,6 +29,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
+                        <!--Search Bar-->
                         <li class="nav-item">
                             <form asp-area="Customer" asp-controller="Home" asp-action="Search" method="get" class="form-inline">
                                 <input class="form-control" name="searchQuery" placeholder="Search..." />
@@ -99,6 +100,8 @@
                                 }
                             </a>
                         </li>
+                        @if (User.IsInRole(SD.Customer_Role))
+                        {
                         <!--Check if basket is not empty-->
                         @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.SessionBasket) != null)
                         {
@@ -120,6 +123,7 @@
                                 </a>
                             </li>
                         }
+                        }
                     </ul>
                 </div>
             </div>
@@ -130,6 +134,12 @@
         <main role="main" class="pb-3">
             <!--Render notifications-->
             @await Component.InvokeAsync("NToastNotify")
+            @if (User.IsInRole(SD.Customer_Role)) {
+            <center>
+                <h6 class="text-danger"><b>DISCLAIMER: ONLY ACCEPTING PAYMENTS IN £(GBP)!</b></h6>
+            </center>
+            <hr />
+            }
             @RenderBody()
 
         </main>

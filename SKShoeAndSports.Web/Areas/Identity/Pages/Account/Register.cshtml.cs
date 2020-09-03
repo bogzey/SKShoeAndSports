@@ -96,6 +96,7 @@ namespace SKShoeAndSports.Web.Areas.Identity.Pages.Account
 
             Input = new InputModel()
             {
+
                 RoleList = _roleManager.Roles.Where(u => u.Name != SD.Customer_Role).Select(s => s.Name).Select(i => new SelectListItem
                 {
                     Text = i,
@@ -131,26 +132,14 @@ namespace SKShoeAndSports.Web.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    if(!await _roleManager.RoleExistsAsync(SD.Admin_Role))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Admin_Role));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Staff_Role))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Staff_Role));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Customer_Role))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Customer_Role));
-                    }
-
-
-                    
-
 
                     if (user.Role == null)
                     {
                         await _userManager.AddToRoleAsync(user, SD.Customer_Role);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, user.Role);
                     }
                     
 
@@ -193,11 +182,6 @@ namespace SKShoeAndSports.Web.Areas.Identity.Pages.Account
 
             Input = new InputModel()
             {
-                StaffList = _unitOfWork.Staff.GetAll().Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
                 RoleList = _roleManager.Roles.Where(u => u.Name != SD.Customer_Role).Select(s => s.Name).Select(i => new SelectListItem
                 {
                     Text = i,

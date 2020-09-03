@@ -142,7 +142,7 @@ namespace SKShoeAndSports.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var allObj = _unitOfWork.ProductVariant.GetAll(includeProperties:"Size,Colour,Product");
+            var allObj = _productService.GetAllProductVariants();
             return Json(new { data = allObj });
         }
 

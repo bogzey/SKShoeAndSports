@@ -58,7 +58,7 @@ namespace SKShoeAndSports.Web.Areas.Admin.Controllers
                 OrderHeader = new OrderHeader(),
                 // Retrieve all items and add to cart
                 BasketList = _unitOfWork.Basket.GetAll(i => i.ApplicationUserId == claim.Value,
-                includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand")
+                includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand,ProductVariant.Size,ProductVariant.Colour")
             };
             BasketVM.OrderHeader.OrderTotal = 0;
 
@@ -193,7 +193,7 @@ namespace SKShoeAndSports.Web.Areas.Admin.Controllers
             {
                 OrderHeader = new Models.OrderHeader(),
                 BasketList = _unitOfWork.Basket.GetAll(i => i.ApplicationUserId == claim.Value,
-                includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand")
+                includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand,ProductVariant.Size,ProductVariant.Colour")
             };
 
             // Retrieve userID of logged in user and assign it to orderheader
@@ -236,7 +236,7 @@ namespace SKShoeAndSports.Web.Areas.Admin.Controllers
 
             // Retrieve product details including product name and brand name for order information
             BasketVM.BasketList = _unitOfWork.Basket.GetAll(i => i.ApplicationUserId == claim.Value,
-                                                            includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand");
+            includeProperties: "ProductVariant,ProductVariant.Product,ProductVariant.Product.Brand,ProductVariant.Size,ProductVariant.Colour");
 
             BasketVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
             BasketVM.OrderHeader.OrderStatus = SD.StatusPending;

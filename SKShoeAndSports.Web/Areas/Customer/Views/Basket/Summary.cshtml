@@ -107,7 +107,10 @@
                                         <div>
                                             <h6 class="my-0">@items.ProductVariant.Product.Brand.Name @items.ProductVariant.Product.Name</h6>
                                             <small class="text-muted">Quantity: @items.Quantity</small>
+                                            <small class="text-muted">Colour: @items.ProductVariant.Colour.Name</small>
+                                            <small class="text-muted">Size: @items.ProductVariant.Size.Name</small>
                                         </div>
+                                        
                                         <span class="text-muted">£@(items.Price * items.Quantity)</span>
                                     </li>
                                     }

@@ -33,7 +33,6 @@ namespace SKShoeAndSports.DataAccess.Repository
                 productsFromDb.Quantity = product.Quantity;
                 productsFromDb.BrandId = product.BrandId;
                 productsFromDb.Price = product.Price;
-                productsFromDb.DiscountPrice = product.DiscountPrice;
                 productsFromDb.ProductTypeId = product.ProductTypeId;
                 productsFromDb.SubcategoryId = product.SubcategoryId;
                 productsFromDb.Description = product.Description;

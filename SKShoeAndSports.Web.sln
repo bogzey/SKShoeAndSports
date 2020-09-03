@@ -11,9 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKShoeAndSports.DataAccess"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKShoeAndSports.Utility", "SKShoeAndSports.Utility\SKShoeAndSports.Utility.csproj", "{0338C6A3-B435-4636-BAA2-C13635B58263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKShoeAndSports.Services", "SKShoeAndSports.Services\SKShoeAndSports.Services.csproj", "{E82A7006-97D3-4A0F-9541-8A27D33FE04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKShoeAndSports.Services", "SKShoeAndSports.Services\SKShoeAndSports.Services.csproj", "{E82A7006-97D3-4A0F-9541-8A27D33FE04C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKShoeAndSports.Test", "SKShoeAndSports.Test\SKShoeAndSports.Test.csproj", "{BF3F6870-CF73-49A5-9AAC-02AFB374A0B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKShoeAndSports.Test", "SKShoeAndSports.Test\SKShoeAndSports.Test.csproj", "{BF3F6870-CF73-49A5-9AAC-02AFB374A0B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadMe", "ReadMe", "{E917B7C2-B22D-4AF9-9906-3B1279674BB4}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

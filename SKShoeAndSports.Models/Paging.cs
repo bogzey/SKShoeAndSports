@@ -6,9 +6,6 @@ namespace SKShoeAndSports.Models
 {
     public class Paging
     {
-
-       
-
         public int TotalItem { get; set; }
         public int ItemsPerPage { get; set; }
         public int CurrentPage { get; set; }

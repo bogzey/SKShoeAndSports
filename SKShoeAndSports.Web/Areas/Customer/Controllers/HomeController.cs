@@ -234,7 +234,6 @@ namespace SKShoeAndSports.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(searchQuery) || string.IsNullOrEmpty(searchQuery))
             {
-                Alert($"Please enter details in search", AlertType.danger);
                 _toastNotification.AddWarningToastMessage("Please enter details in search box");
                 return RedirectToAction(nameof(Index));
             }

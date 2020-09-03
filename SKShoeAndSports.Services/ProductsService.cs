@@ -53,8 +53,6 @@ namespace SKShoeAndSports.Services
                 Brand = p.Brand,
                 Category = p.Category,
                 Description = p.Description,
-                DiscountPrice = p.DiscountPrice,
-                IsDiscount = p.IsDiscount,
                 Name = p.Name,
                 ImageUrl = p.ImageUrl,
                 Subcategory = p.Subcategory,
@@ -143,7 +141,14 @@ namespace SKShoeAndSports.Services
         public IList<ProductVariant> GetAllProductVariants()
         {
             // return all variants of a product
-            return _unitOfWork.ProductVariant.GetAllProductVariants();
+            var productVariants = _db.ProductVariants
+                .Include(p => p.Colour)
+                .Include(p => p.Size)
+                .Include(p => p.Product)
+                .AsNoTracking()
+                .ToList();
+
+            return productVariants;
         }
 
         public ProductVariant AddProductVariant(ProductVariant p)

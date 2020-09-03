@@ -17,17 +17,16 @@ namespace SKShoeAndSports.Models
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
-        [Required]
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal DiscountPrice { get; set; }
-        public bool IsDiscount { get; set; }
         public string ImageUrl { get; set; }
 
         // Foreign Keys
+        [Required]
         public int BrandId { get; set; }
-        
+        [Required]        
         public int ProductTypeId { get; set; }
+        [Required]
         public int SubcategoryId { get; set; }
+        [Required]
         public int CategoryId { get; set; }
 
         // Navigation Properties
